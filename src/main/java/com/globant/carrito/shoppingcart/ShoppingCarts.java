@@ -14,7 +14,10 @@ import javax.persistence.OneToMany;
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import com.globant.carrito.product.Product;
 
-public class ShoppingCarts {
+
+
+public class ShoppingCarts { //es un carrito solo asi que iría en singular habria que cambiarlo 
+
 
 	@Id
 	@GeneratedValue
@@ -24,11 +27,13 @@ public class ShoppingCarts {
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<Product> items;
 	@Column
-	private Date date;
+	private Date date; // el campo date es la fecha del carrito
 	@Column
 	private double cartcost;
 	@Column
-	private boolean status;
+	private boolean status; /*el campo status, es un boolean que indica si el carrito está abierto o no. 
+	                         * Cuando el usuario inicia sesión, en caso de tener algún carrito abierto, le carga lo que tiene en el carrito y sigue utilizando el mismo hasta 
+	                         * que se cierre, caso que esté cerrado, inicia uno nuevo */
 	
 	
 	
@@ -43,7 +48,7 @@ public class ShoppingCarts {
 
 	public ShoppingCarts(Product... initialItems) {
 		items = new HashSet<Product>();
-		for (Product item : initialItems) {
+		for (Product item : initialItems) {    //Va colocando los items (product) en el hash
 			addItem(item);
 		}
 	}
@@ -77,13 +82,18 @@ public class ShoppingCarts {
 	public void setCartPrice(double cartcost) {
 		this.cartcost = cartcost;
 	}
+	
+	/* esto puede ser un cuestión de performance, si bien es un dato que puede calcularse, pero supongamos el caso de tener                                         
+	 * carritos con varios productos, cada vez que consultes el total tiene que recorrerlo una y otra vez... en cambio con sólo 
+	* agregarle un atributo más (cosa que no baja mucho la performance) ya no es necesario recorrerlo cada vez que necesito saber                                      
+	* * el total de cada carrito */
 
 	public boolean isStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
-		this.status = status;
+	public void setStatus(boolean status) {  
+		this.status = status;                
 	}
 
 	public int getCartId() {
@@ -91,3 +101,6 @@ public class ShoppingCarts {
 	}
 	
 }
+
+
+

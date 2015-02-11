@@ -28,25 +28,28 @@ public class Product {
 	public void setProduct_quantity(int product_quantity) {
 		this.product_quantity = product_quantity;
 	}
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	private ShoppingCarts cart;
 	@ManyToOne(cascade = CascadeType.ALL)
-	private Product product;
-
-	public Product getProduct() {
-		return product;
-	}
 	
+	private ProductInStock productinstock;
+
+	
+	public ProductInStock getProductInStock() {
+		return productinstock;
+	}
+
 	
 	public Product() {
 	}
-
-	public Product(double product_price, int product_quantity, Product product) {
-		super();
+	
+	/*me falto subir otras clases al repo, estaba mal ya que como me comentabas un producto recibe como argumento otro producto, la idea o por lo menos lo que quiero hacer
+	 *es sacar los articulos de una gondola (clase ProductInStock) e ir metiendolos en el carrito */
+	public Product(double product_price, int product_quantity, ProductInStock productinstock) { 
 		this.product_price = product_price;
 		this.product_quantity = product_quantity;
-		this.product = product;
+		this.productinstock = productinstock;
 	}
 
 	public int getProduct_id() {
@@ -65,20 +68,12 @@ public class Product {
 		this.product_price = product_price;
 	}
 
-	public ShoppingCarts getCart() {
-		return cart;
-	}
+	/*
+	 * public ShoppingCarts getCart() { return cart; }
+	 */// no iría
 
 	public void setCart(ShoppingCarts cart) {
 		this.cart = cart;
 	}
-			
+
 }
-
-
-
-
-
-
-
-

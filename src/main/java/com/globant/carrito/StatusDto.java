@@ -11,3 +11,6 @@ public class StatusDto {
 		return status;
 	}
 }
+
+// es un estado relacionado con el loguin activo o inactivo
+

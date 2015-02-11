@@ -125,9 +125,11 @@ public class ProductService {
 	}
 	
 	
-	private ShoppingCarts getCart(HttpSession session, EntityManager em) {
-		// TODO Auto-generated method stub
-		return null;
+	public ShoppingCarts getCart(HttpSession session, EntityManager em) {
+		/* este metodo no esta hecho sería para recuperar el carro activo en una sesión
+		 * esto estaría referenciado en el index.html function refreshCart()  
+		 */
+		return null;				
 	}
 
 }
